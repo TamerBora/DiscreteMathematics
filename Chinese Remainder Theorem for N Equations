@@ -1,0 +1,33 @@
+#Chinese Remainder Theorem For N Equations
+
+def chineseRemainderTheorem():
+    aValues = []
+    MValues = []
+    n = int(input("How many equations will you use ? :")) # number of equations
+    for i in range(n):
+        aValues.append(int(input("Enter a value :")))
+        MValues.append(int(input("Enter corresponding M value: ")))
+
+    counter = 0
+    for i in range(n):
+        counter+=1
+        print(f"\n Equation {counter} : {aValues[i]} mod({MValues[i]})")
+
+    startPoint = aValues[0]
+    product = 1
+    for num in range(n):
+        product*=MValues[num]
+    while startPoint<product:
+        for ind in range(n):
+            if startPoint % MValues[ind] != aValues[ind]:
+                break
+        else:
+            X = startPoint
+            break
+        startPoint +=MValues[0]
+    print(f"\nSolution of the system of modular equations : {X}")
+
+chineseRemainderTheorem()
+
+
+
